@@ -69,15 +69,20 @@ h2{
 #zoneDeRecherche, #zoneDeReponse{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     gap:10px;
     background-color: aliceblue;
     border-radius: 5px;
-    width: 250px;
+    width: 400px;
+    height:500px;
     text-align: center;
 }
-
-#departure, #arrival, #date, #search{
+#blockDepartArrival{
+    display: flex;
+    flex-direction: column;
+}
+#blockDepartArrival #departure, #arrival, #date, #search{
+    font-size: 15px;
     text-align: center;
     border: none;
     margin-left: 20%;
@@ -86,11 +91,10 @@ h2{
 #departure, #arrival, #date{
     background-color: rgb(216, 205, 205);  
 }
+#departure{
+    border-bottom: 1px solid black;
+}
 #search{
     background-color:#458f7a 
 }
-#imgTrain{
-    width: 70%;
-height: 70%;
-   
-}
+
