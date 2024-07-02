@@ -1,0 +1,96 @@
+body {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(12, 1fr);
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height:100vh;
+}
+
+/* ---------------------Header--------------------------- */
+#header {
+    display: flex;
+    justify-content: space-between;
+align-items: center;
+    grid-row-start: 0;
+    grid-row-end: 2;
+}
+
+#logo {
+    color: #458f7a;
+    font-size: 30px;
+    width: 20%;
+    margin-left: 10%;
+}
+
+#menu {
+    display: flex;
+    margin-right: 5%;
+    gap: 50px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+
+/* ---------------------Main--------------------------- */
+h1{
+color:white;
+font-size:40px;
+text-align: center;
+}
+h2{
+    color:white;
+    font-size:20px;
+    text-align: center;
+}
+#main {
+    
+    height: 100%;
+    width:100%;
+    background-image: url('./images/background.jpg');
+    background-size: cover;
+    grid-row-start: 2;
+    grid-row-end: 13;
+}
+
+#container{ 
+    
+    display: flex;
+    flex-direction: inline;
+    justify-content: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    gap:50px
+}
+
+#zoneDeRecherche, #zoneDeReponse{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap:10px;
+    background-color: aliceblue;
+    border-radius: 5px;
+    width: 250px;
+    text-align: center;
+}
+
+#departure, #arrival, #date, #search{
+    text-align: center;
+    border: none;
+    margin-left: 20%;
+    margin-right: 20%;
+}
+#departure, #arrival, #date{
+    background-color: rgb(216, 205, 205);  
+}
+#search{
+    background-color:#458f7a 
+}
+#imgTrain{
+    width: 70%;
+height: 70%;
+   
+}
