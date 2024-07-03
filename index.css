@@ -82,7 +82,7 @@ h2{
     display: flex;
     flex-direction: column;
 }
-#blockDepartArrival #departure, #arrival, #date, #search{
+#blockDepartArrival #departureZ, #arrivalZ, #dateZ, #search{
     font-size: 15px;
     text-align: center;
     border: none;
@@ -103,11 +103,11 @@ h2{
 /* ////////affichage trajet///////// */
 .trajet{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-around; 
     background-color: rgb(216, 205, 205);
-    padding:5px;
-    margin-left: 10%;
-    margin-right: 10%;
+    padding:5px; 
+     margin-left: 5%;
+    margin-right: 5%;
     margin-top:5%;
 }
 .book{
