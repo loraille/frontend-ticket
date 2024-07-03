@@ -3,9 +3,9 @@ document.querySelector('#search').addEventListener('click', function () {
         departure: document.querySelector('#departure').value,
         arrival: document.querySelector('#arrival').value,
         date: document.querySelector('#date').value,
+    
     }
    
-
     if (entries.departure === "" || entries.arrival === "" || entries.date === "") {
         console.log('test')
         document.querySelector('#imgReponse').src = "./images/notfound.png"
@@ -58,12 +58,11 @@ document.querySelector('#search').addEventListener('click', function () {
                         )
                     })
                 }
-            }
+            } 
         })
     }
         document.querySelector('#imgReponse').style.display = 'none'
         document.querySelector('#textReponse').style.display = 'none'
-
         
     }
 )
