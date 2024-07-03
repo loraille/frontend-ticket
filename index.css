@@ -63,7 +63,7 @@ h2{
     justify-content: center;
     margin-top: 30px;
     margin-bottom: 30px;
-    gap:50px
+    gap:50px;
 }
 
 #zoneDeRecherche, #zoneDeReponse{
@@ -76,11 +76,12 @@ h2{
     width: 400px;
     height:500px;
     text-align: center;
-    overflow: auto
+    overflow: auto;
 }
 #blockDepartArrival{
     display: flex;
     flex-direction: column;
+    
 }
 #blockDepartArrival #departureZ, #arrivalZ, #dateZ, #search{
     font-size: 15px;
@@ -89,12 +90,10 @@ h2{
     margin-left: 20%;
     margin-right: 20%;
 }
-#departure, #arrival, #date{
+#departureZ, #arrivalZ, #dateZ{
     background-color: rgb(216, 205, 205);  
 }
-#departure{
-    border-bottom: 1px solid black;
-}
+
 #search{
     background-color:#458f7a ;
     color: white;
@@ -116,5 +115,9 @@ h2{
     color: white;
     text-decoration: none;
     border: none;
+}
+
+#priceFormat{
+    display: flex;
 }
 

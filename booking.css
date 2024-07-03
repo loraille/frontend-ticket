@@ -51,12 +51,27 @@ a {
 }
 
 #booking {
+    width: 50vw; /* 50% of the viewport width */
+    max-width: 800px; /* keep the maximum width at 500px */
     display: flex;
     flex-direction: column;
     justify-content: space-around;
     background-color: aliceblue;
-    border-radius: 5px;
-    width: 60%;
-    height: 15%;
+    border-radius: 5px 5px 0px 0px;
+    height: 200px;
     text-align: center;
+    overflow: auto;
+   padding-top: 5px;
+   padding-bottom: 5px;
+}
+
+.trajet{
+    display: flex;
+    justify-content: space-between; 
+    background-color: rgb(216, 205, 205);
+    padding:5px; 
+     margin-left: 5%;
+    margin-right: 5%;
+    margin-top:5%;
+    border-radius: 3px;
 }

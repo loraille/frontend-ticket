@@ -1,3 +1,5 @@
+const euroSymbol = '\u20AC'
+
 document.querySelector('#search').addEventListener('click', function () {
     document.querySelector('#zoneDeReponse').innerHTML = '';
     const entries = {
@@ -23,7 +25,10 @@ document.querySelector('#search').addEventListener('click', function () {
                             <div id ="departure"> ${trajet.departure} </div>
                             <div id='arrival'>${trajet.arrival}</div>
                             <div id="date">${moment(trajet.date).format('HH:mm')} </div>
+                            <div id="priceFormat">
                             <div id="price">${trajet.price}</div>
+                            <div>${euroSymbol}</div>
+                            </div>
                             <button class="book">Book</button>
                         </div>`
 
@@ -32,7 +37,7 @@ document.querySelector('#search').addEventListener('click', function () {
                     for (const button of bookButtons) {
                         button.addEventListener('click', function () {
                             const trip = this.parentNode
-                           
+
                             const dateElement = trip.querySelector('#date').textContent;
                             const parsedDate = moment(dateElement, 'HH:mm').toDate();
                             const tripTest = {
@@ -57,17 +62,17 @@ document.querySelector('#search').addEventListener('click', function () {
                         })
                     }
                 }
-            })  
-            document.querySelector('#imgReponse').style.display = 'none'
-            document.querySelector('#textReponse').style.display = 'none'
-        }
-    })
+            })
+        document.querySelector('#imgReponse').style.display = 'none'
+        document.querySelector('#textReponse').style.display = 'none'
+    }
+})
 
-    
+
 
 // moment(element.trip.date).fromNow('HH::MM')
 //trajet.date.substr(11, 5)
-    
+
 
 
 
