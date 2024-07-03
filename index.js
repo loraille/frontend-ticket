@@ -20,13 +20,45 @@ document.querySelector('#search').addEventListener('click', function () {
         .then(data => {
                 for (let trajet of data.trips) {
                     document.querySelector('#zoneDeReponse').innerHTML += `
-                    <div id='${trajet.id}' class='trajet'>
-                    <div> ${trajet.departure}> ${trajet.arrival}</div>
-                    <div>${trajet.date.substr(11, 5)}</div>
-                    <div id="price">${trajet.price}</div>
-                    <button id="book">Book</button>
-                </div>`
-                }  
+                        <div class='trajet'>
+                            <div id ="departure"> ${trajet.departure} </div>
+                            <div id='arrival'>${trajet.arrival}</div>
+                            <div id="date">${trajet.date.substr(11, 5)}</div>
+                            <div id="price">${trajet.price}</div>
+                            <button class="book">Book</button>
+                        </div>`
+
+                const bookButtons = document.querySelectorAll('.book')
+
+                for (const button of bookButtons) {
+                    button.addEventListener('click', function(){
+                        // 1) window.location.assign('./cart.html')
+                        //2) rentrer infos dans bdd cart 
+                        const trip = this.parentNode
+                        
+                        const tripTest= {
+                        price : trip.querySelector('#price').textContent,
+                        departure : trip.querySelector('#departure').textContent,
+                        arrival : trip.querySelector('#arrival').textContent,
+                        date : trip.querySelector('#date').textContent,
+                        }
+                        
+                        fetch(`http://localhost:3000/cart/cartTrip`,{
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(tripTest),
+                        })
+                        .then(response => response.json())
+                        .then(data => {                        
+                          if(data){
+                            window.location.assign('./cart.html')
+                          }
+                        }
+                    
+                        )
+                    })
+                }
+            }
         })
     }
         document.querySelector('#imgReponse').style.display = 'none'
@@ -36,24 +68,3 @@ document.querySelector('#search').addEventListener('click', function () {
     }
 )
 
-// document.querySelectorAll('#book').addEventListener('click', function(){
-//     // 1) window.location.assign('./cart.html')
-//     //2) rentrer infos dans bdd cart 
-//     fetch(`http://localhost:3000/cartTrip`,{
-//     method: 'POST',
-//     headers: { 'Content-Type': 'application/json' },
-//     body: JSON.stringify(),
-//     })
-//     .then(response => response.json())
-//     .then(
-
-//     )
-//     // for (let item of trajets) {
-//     //         const id = this.parentNode.id//recupère l'id du parent
-//     //         console.log('test')
-//     //     })
-//     })
-
-
-
-    
