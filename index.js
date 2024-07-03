@@ -23,7 +23,7 @@ document.querySelector('#search').addEventListener('click', function () {
                         <div class='trajet'>
                             <div id ="departure"> ${trajet.departure} </div>
                             <div id='arrival'>${trajet.arrival}</div>
-                            <div id="date">${trajet.date.substr(11, 5)}</div>
+                            <div id="date">${trajet.date.substr(11, 5)} </div>
                             <div id="price">${trajet.price}</div>
                             <button class="book">Book</button>
                         </div>`
