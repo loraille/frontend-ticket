@@ -1,59 +1,88 @@
-//si tu as qqchoise en bdd alorsq affiche le moi sinon affiche page par default
+//function
+function totalPrice(){
+    const listPrice = document.querySelectorAll('#price')
+    let total = 0
+    for(let price of listPrice){
+    
+        let test = Number(price.textContent)
+        total+=test
+    }
+    return total
+}
+
 
 fetch ('http://localhost:3000/cart/checkCart')
 .then(response =>response.json())
-.then(data =>  {
-    for (let cart of data.data) {
-    document.querySelector('#cart').innerHTML += `
-        <div class='trajet'>
-            <div id ="departure"> ${cart.departure} </div>
-            <div id='arrival'>${cart.arrival}</div>
-            <div id="date">${cart.date} </div>
-            <div id="price">${cart.price}</div>
-            <button class="delete" id=${cart._id}>Delete</button>
-        </div>
-        `
-    document.querySelector('#infoCart').style.display = 'none'
-    }
+.then(data =>  { 
+    if(data.result){
+        document.querySelector('#cart').innerHTML += `
+            <div id="infoCart">
+                <p>No tickets in your cart.</p>
+                <p>Why not plan a trip?</p>
+            </div>`
+    }else{
+        for (let cart of data.data) {
+        document.querySelector('#cart').innerHTML += `
+            <div class='trajet'>
+                <div id ="departure"> ${cart.departure} </div>
+                <div id='arrival'>${cart.arrival}</div>
+                <div id="date">${moment(cart.date).format('HH:mm')} </div>
+                <div id="price">${cart.price}</div>
+                <button class="delete" id=${cart._id}>Delete</button>
+            </div>
+            `
+        }
+        document.querySelector('#cart').innerHTML += `
+                <div id="cartList">
+                    <div id="total">Total ${totalPrice()}</div>
+                    <button class="purchase">Purchase</button>
+                </div> `
 
-    document.querySelector('#cart').innerHTML += `
-    <div class = "zoneTotal">
-            <div class = "total">Total: <span></span> </div>
-           <button class="purchase">Purchase</button>
-    </div>`
+        //Boutton delete
         const deleteButtons = document.querySelectorAll('.delete')
         for (const deleteCart of deleteButtons) {
             deleteCart.addEventListener('click', function(){
-
-                // const cartElement = this.parentNode;
-                
-                // const departure = cartElement.querySelector('#departure').textContent.trim();
-                // const arrival = cartElement.querySelector('#arrival').textContent.trim();
-                // const date = cartElement.querySelector('#date').textContent.trim();
-                // const price = cartElement.querySelector('#price').textContent.trim();
-                console.log(this.id)
                 fetch(`http://localhost:3000/cart/${this.id}`, {
                     method: 'DELETE',
-                    // headers: { 'Content-Type': 'application/json' },
-                    // body: JSON.stringify(cartDelete),
-                 })
+                    })
                 .then(response => response.json())
                 .then(data => {                    
-                  if(!data.error){
+                    if(!data.error){
                     this.parentNode.remove();
-                    // window.location.assign('./booking.html') seulement quand on fait un purchase!!!
-                  }
-                }
-            
-                )
-            })
-        
-        }
-})
 
-// const cartDelete= {
-//     price : cart.querySelector('#price').textContent,
-//     departure : cart.querySelector('#departure').textContent,
-//     arrival : cart.querySelector('#arrival').textContent,
-//     date : cart.querySelector('#date').textContent,
-//     }
+                    }
+                })
+            })
+        }
+
+        //Boutton purchase
+        const purchaseButton = document.querySelector('.purchase')
+        purchaseButton.addEventListener('click', function(){
+
+            const dateElement = document.querySelector('#date').textContent
+            const parsedDate = moment(dateElement, 'HH:mm').toDate();
+
+            const number = document.querySelector('#price').textContent
+            const nb = Number(number)
+            
+            const entries = {
+                departure: document.querySelector('#departure').textContent,
+                arrival: document.querySelector('#arrival').textContent,
+                date: parsedDate,
+                price: nb,
+            }
+            fetch(`http://localhost:3000/booking/purchase`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(entries),
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data) {
+                        window.location.assign('./booking.html')
+                    }
+                })
+        
+        })
+    }
+})
