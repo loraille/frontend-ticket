@@ -14,13 +14,15 @@ function totalPrice() {
 fetch('http://localhost:3000/cart/checkCart')
     .then(response => response.json())
     .then(data => {
-        if (data.result) {
+        if (data.data.length == 0) {
+            console.log(data.result)
             document.querySelector('#cart').innerHTML += `
             <div id="infoCart">
                 <p>No tickets in your cart.</p>
                 <p>Why not plan a trip?</p>
             </div>`
         } else {
+            console.log
             for (let cart of data.data) {
                 document.querySelector('#cart').innerHTML += `
             <div class='trajet'>

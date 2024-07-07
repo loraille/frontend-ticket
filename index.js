@@ -1,7 +1,7 @@
 const euroSymbol = '\u20AC'
 
 document.querySelector('#search').addEventListener('click', function () {
-    document.querySelector('#zoneDeReponse').innerHTML = '';
+    // document.querySelector('#zoneDeReponse').innerHTML = '';
     const entries = {
         departure: document.querySelector('#departureZ').value,
         arrival: document.querySelector('#arrivalZ').value,
@@ -9,6 +9,7 @@ document.querySelector('#search').addEventListener('click', function () {
     }
 
     if (entries.departure === "" || entries.arrival === "" || entries.date === "") {
+        console.log(entries)
         document.querySelector('#imgReponse').src = "./images/notfound.png"
         document.querySelector('#textReponse').textContent = 'No trip found.'
     } else {
@@ -37,7 +38,6 @@ document.querySelector('#search').addEventListener('click', function () {
                     for (const button of bookButtons) {
                         button.addEventListener('click', function () {
                             const trip = this.parentNode
-
                             const dateElement = trip.querySelector('#date').textContent;
                             const parsedDate = moment(dateElement, 'HH:mm').toDate();
                             const tripTest = {
